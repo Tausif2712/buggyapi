@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
 const userRouter = require("./routes/user");
+const path = require("path");
 const PORT = 5000;
 // db connection
 mongoose.connect("mongodb://127.0.0.1:27017/userDb").then((e) => {
@@ -12,6 +13,7 @@ mongoose.connect("mongodb://127.0.0.1:27017/userDb").then((e) => {
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+app.use(express.static(path.resolve("./public")));
 app.use("/user", userRouter);
 
 //router

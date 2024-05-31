@@ -1,7 +1,11 @@
 const { Schema, model } = require("mongoose");
-const userSchema = new Schema(
+const driverSchema = new Schema(
   {
-    fullName: {
+    firstName: {
+      type: String,
+      required: true,
+    },
+    lastName: {
       type: String,
       required: true,
     },
@@ -21,11 +25,16 @@ const userSchema = new Schema(
     },
     version: {
       type: String,
+      required: true,
     },
     device: {
       type: String,
       enum: ["Android", "ios"],
-      default: "ios",
+      required: true,
+    },
+    role: {
+      type: String,
+      default: "Driver",
     },
     dateOfBirth: {
       type: String,
@@ -37,26 +46,32 @@ const userSchema = new Schema(
     },
     totalReferral: {
       type: Number,
-      default: 0,
     },
     status: {
-      type: String,
-      enum: ["Active", "Deactive"],
-      default: "Active",
-    },
-    deleteFlag: {
       type: Boolean,
+      default: true,
+    },
+    driverAverageRating: {
+      type: Number,
+    },
+    driverLicense: {
+      type: String,
+      required: true,
+    },
+    inspection: {
+      type: String,
+      required: true,
+    },
+    insurance: {
+      type: String,
+      required: true,
     },
     profileImage: {
       type: String,
-    },
-    role: {
-      type: String,
-      default: "Rider",
     },
   },
   { timestamps: true }
 );
 
-const User = model("user", userSchema);
-module.exports = User;
+const Driver = model("driver", driverSchema);
+module.exports = Driver;

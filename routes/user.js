@@ -1,11 +1,19 @@
 const express = require("express");
 const router = express.Router();
-const { handlePostSignup, handleGetProfile } = require("../controllers/user");
+const {
+  handlePostSignup,
+  handleGetProfile,
+  upload,
+} = require("../controllers/user");
 //Get
 
-router.get("/profile/:id", handleGetProfile);
+router.get("/profile", handleGetProfile);
 
 //Post
-router.post("/signup", handlePostSignup);
-router.post("/ride/history");
+router.post("/signup", upload.single("profileImage"), handlePostSignup);
+// router.post("/ride/history");
 module.exports = router;
+
+//Update
+
+//delete
