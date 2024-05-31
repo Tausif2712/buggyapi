@@ -28,7 +28,7 @@ async function handlePostSignup(req, res) {
       password,
       dateOfBirth: dob,
       gender,
-      profileImage,
+      profileImage: profileImage ? profileImage : "default.jpg",
     });
     return res.status(201).json({ userCreated, msg: "User Created" });
   } catch (error) {
@@ -37,6 +37,22 @@ async function handlePostSignup(req, res) {
     });
   }
 }
+
+async function handleGetProfile(req, res) {
+  const { id } = req.params;
+
+  const { fullName, email, phoneNumber, dateOfBirth, gender, profileImage } =
+    await userDb.findById(id);
+  return res.json({
+    fullName,
+    email,
+    phoneNumber,
+    dateOfBirth,
+    gender,
+    profileImage,
+  });
+}
 module.exports = {
   handlePostSignup,
+  handleGetProfile,
 };
