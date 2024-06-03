@@ -79,8 +79,33 @@ async function handleGetProfile(req, res) {
     profileImage,
   });
 }
+async function handleDeleteRider(req, res) {
+  const { id } = req.params;
+  await userDb.findByIdAndDelete(id);
+  return res.json({
+    msg: "Rider Deleted Successfully",
+  });
+}
+
+async function handelPatchRider(req, res) {
+  const { id } = req.params;
+  const { fullName, version, device, totalReferral, status } = req.body;
+  await userDb.findByIdAndUpdate(id, {
+    fullName,
+    version,
+    device,
+    totalReferral,
+    status,
+  });
+  return res.json({
+    msg: "Rider Updated Successfully",
+  });
+}
+
 module.exports = {
   handlePostSignup,
   handleGetProfile,
   upload,
+  handleDeleteRider,
+  handelPatchRider,
 };

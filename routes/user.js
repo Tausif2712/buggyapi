@@ -4,6 +4,8 @@ const {
   handlePostSignup,
   handleGetProfile,
   upload,
+  handleDeleteRider,
+  handelPatchRider,
 } = require("../controllers/user");
 //Get
 
@@ -15,5 +17,6 @@ router.post("/signup", upload.single("profileImage"), handlePostSignup);
 module.exports = router;
 
 //Update
-
+router.patch("/update/:id", handelPatchRider);
 //delete
+router.delete("/delete/:id", handleDeleteRider);
