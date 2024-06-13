@@ -52,7 +52,7 @@ async function handlePostSignup(req, res) {
 }
 
 async function handleGetProfile(req, res) {
-  const { id } = req.query;
+  const { id } = req.params;
 
   const {
     fullName,

@@ -9,7 +9,7 @@ const {
 } = require("../controllers/user");
 //Get
 
-router.get("/profile", handleGetProfile);
+router.get("/profile/:id", handleGetProfile);
 
 //Post
 router.post("/signup", upload.single("profileImage"), handlePostSignup);
